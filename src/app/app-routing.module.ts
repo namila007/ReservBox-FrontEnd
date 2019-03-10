@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewContractComponent } from './new-contract/new-contract.component';
 
 const routes: Routes = [
-  {path:'' , component:},
+  // {path:'' , component:},
   {path: 'contract/new', component: NewContractComponent}
   // {path: "**" , component: PageNotFoundComponent}
 ];
