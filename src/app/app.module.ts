@@ -4,20 +4,24 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material';
 import {MaterialModule} from './material-module';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    PageNotFoundComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
