@@ -4,14 +4,14 @@
 
     <div fxLayout="row">
           <mat-form-field class="box" >
-              <input matInput [matDatepicker]="picker1" placeholder="Choose Starting date">
+              <input [(ngModel)]='startDate' matInput [matDatepicker]="picker1" placeholder="Choose Starting date">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
       </div>
       <div fxLayout="row">
           <mat-form-field class="box">
-              <input matInput [matDatepicker]="picker2" placeholder="Choose Ending date">
+              <input [(ngModel)]='endDate' matInput [matDatepicker]="picker2" placeholder="Choose Ending date">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
@@ -22,12 +22,12 @@
       </div>
       <div fxLayout="row">
         <mat-form-field class="box">
-            <input matInput placeholder="Hotel Name">
+            <input [(ngModel)]='name' matInput placeholder="Hotel Name">
           </mat-form-field>
       </div>
       <div fxLayout="row">
           <mat-form-field class="box">
-              <textarea matInput placeholder="Hotel Address"></textarea>
+              <textarea [(ngModel)]='address' matInput placeholder="Hotel Address"></textarea>
             </mat-form-field>
           </div>
           <mat-divider></mat-divider>
@@ -91,7 +91,7 @@
           </div>
           <mat-divider></mat-divider>
   <div fxLayout="row wrap" fxLayoutAlign="center start" >
-      <button mat-button color="primary"  >
+      <button (click)="onSubmit()" mat-button color="primary"  type="submit" >
         <mat-icon>save</mat-icon>
         SAVE
       </button>
