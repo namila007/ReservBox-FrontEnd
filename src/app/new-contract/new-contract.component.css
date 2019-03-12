@@ -1,12 +1,9 @@
-
-.main-div {
-  max-width: 800px;
-  display: block;
-  margin-left:50px;
-  margin-right:auto;
-  margin-top: 50px;
-
+.card {
+  margin: auto;
+  margin-top: 10px;
+  width: 80%;
 }
+
 
 .tbl {
   margin-top: 10px;

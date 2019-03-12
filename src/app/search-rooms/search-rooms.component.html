@@ -1,0 +1,23 @@
+<mat-card class="card">
+  <mat-card-title>Find Rooms</mat-card-title>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+    <div fxLayout="row">
+        <mat-form-field class="box" fxLayoutGap="50px" >
+            <input [(ngModel)]='startDate' matInput [matDatepicker]="picker1" placeholder="Choose Starting date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="50px" >
+        <mat-form-field class="box">
+            <input [(ngModel)]='endDate' matInput [matDatepicker]="picker2" placeholder="Choose Ending date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+    </div>
+</div>
+</mat-card>
+
+<mat-card class="card">
+
+</mat-card>

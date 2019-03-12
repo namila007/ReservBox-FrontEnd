@@ -1,6 +1,7 @@
-<div class="main-div" >
 
-    Add rooms
+<mat-card class="card">
+    <mat-card-title> Add rooms</mat-card-title>
+
 
     <div fxLayout="row">
           <mat-form-field class="box" >
@@ -90,11 +91,13 @@
 
           </div>
           <mat-divider></mat-divider>
-  <div fxLayout="row wrap" fxLayoutAlign="center start" >
+          <mat-card-actions>
+
       <button (click)="onSubmit()" mat-button color="primary"  type="submit" >
         <mat-icon>save</mat-icon>
         SAVE
       </button>
-    </div>
 
-</div>
+  </mat-card-actions>
+  </mat-card>
+

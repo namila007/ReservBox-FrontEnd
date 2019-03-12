@@ -14,6 +14,9 @@ export interface Rooms {
 
 export interface Reply {
   id: number;
+  startDate: string;
+  endDate: string;
+  rooms: Rooms;
 }
 
 

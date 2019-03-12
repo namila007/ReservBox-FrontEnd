@@ -9,10 +9,12 @@ import {MatNativeDateModule} from '@angular/material';
 import {MaterialModule} from './material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SearchRoomsComponent
   ],
   imports: [
     BrowserModule,
