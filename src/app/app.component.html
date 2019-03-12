@@ -1,11 +1,23 @@
 <mat-toolbar color="primary"  >
     <mat-toolbar-row>
-      <button mat-button routerLink="/" >
-          <i class="material-icons">
-              home
-              </i>
-        Reserv Box
-      </button>
+        <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-button routerLink="/" >
+                  <i class="material-icons">
+                    home
+                    </i>
+                  Reserv Box
+                </button>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="3" [rowspan]="1">
+                <button mat-button routerLink="/contract/new" >
+                    <i class="material-icons">
+                      add
+                    </i>
+                    Add Contract
+                </button>
+             </mat-grid-tile>
+        </mat-grid-list>
     </mat-toolbar-row>
   </mat-toolbar>
 

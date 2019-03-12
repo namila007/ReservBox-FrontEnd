@@ -12,6 +12,10 @@ export interface Rooms {
   roomType: string;
 }
 
+export interface Reply {
+  id: number;
+}
+
 
 // tslint:disable-next-line: one-variable-per-declaration
 const dataset: Rooms [] = [];
@@ -56,7 +60,7 @@ export class NewContractComponent implements OnInit {
   }
 
   onSubmit() {
-    let payload = {
+    const payload = {
       startDate: this.startDate,
       endDate: this.endDate,
       hotel: {
@@ -66,9 +70,9 @@ export class NewContractComponent implements OnInit {
     rooms: this.dataSource.data
     };
 // tslint:disable-next-line: arrow-return-shorthand
-    this._contractService.createContract(payload).subscribe(data => {
-      console.log(data);
-      if (data.id != null) { alert('Data Added'); }
+    this._contractService.createContract(payload).subscribe(reply => {
+      console.log(reply);
+      if (reply.id != null) { alert('Data Added'); }
     });
 
 
