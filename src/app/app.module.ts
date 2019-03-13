@@ -15,6 +15,7 @@ import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
     AppComponent,
     routingComponents,
     SearchRoomsComponent
+
   ],
   imports: [
     BrowserModule,
