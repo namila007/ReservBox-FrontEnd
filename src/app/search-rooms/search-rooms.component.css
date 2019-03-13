@@ -7,3 +7,26 @@
   margin-top: 10px;
   width: 80%;
 }
+
+
+.btn {
+  width: 100%;
+  background-color: plum;
+}
+
+.mat-column-hotelname {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
+
+.mat-column-roomType {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
+
+.mat-column-price {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
+
+

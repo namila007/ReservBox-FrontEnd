@@ -3,8 +3,6 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ContractService } from '../contract.service';
 
 
-const ColumnsNames = ['No', 'Room Type', 'Room Rate', 'Max Adults/Room' , 'No. of Rooms'];
-
 export interface Rooms {
   maxAdults: number;
   roomRate: number;
