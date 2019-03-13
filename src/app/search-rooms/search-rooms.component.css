@@ -12,9 +12,10 @@
 .btn {
   width: 100%;
   background-color: plum;
+  margin: 2px;
 }
 
-.mat-column-hotelname {
+.mat-column-hotelName {
   flex: 0 0 25% !important;
   min-width: 104px !important;
 }
@@ -29,4 +30,12 @@
   min-width: 104px !important;
 }
 
+.mat-column-rooms {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
+.mat-column-adults {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
 

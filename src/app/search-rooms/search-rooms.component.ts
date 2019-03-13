@@ -18,7 +18,8 @@ const dataset:any[] = [];
   styleUrls: ['./search-rooms.component.css']
 })
 export class SearchRoomsComponent implements OnInit {
-  displayedColumns = ['hotelname', 'roomType', 'price'];
+  displayedColumns = ['hotelName', 'roomType', 'price'];
+  displayedCols = ['rooms', 'adults'];
   dataSource = new MatTableDataSource(dataset);
   constructor(private _searchService: SearchService) { }
 

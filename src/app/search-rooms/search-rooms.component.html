@@ -23,6 +23,23 @@
           </mat-form-field>
       </div>
 </div>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z1 tbl" responsive="true">
+
+    <ng-container matColumnDef="rooms">
+        <th mat-header-cell *matHeaderCellDef> No. of Rooms </th>
+        <td mat-cell *matCellDef="let rooms"> {{rooms.no}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="adults">
+        <th mat-header-cell *matHeaderCellDef> Adults per Room </th>
+        <td mat-cell *matCellDef="let rooms"> {{rooms.adults}} </td>
+      </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedCols;"></tr>
+</mat-table>
+</div>
 <mat-action-row>
     <button mat-button color="primary" class="btn" (click)="find()" >SEARCH</button>
 
@@ -31,7 +48,7 @@
 <mat-card class="card">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z1 tbl" responsive="true">
 
-        <ng-container matColumnDef="hotelname">
+        <ng-container matColumnDef="hotelName">
             <th mat-header-cell *matHeaderCellDef> Hotel Name </th>
             <td mat-cell *matCellDef="let rooms"> {{rooms.hotelName}} </td>
           </ng-container>
