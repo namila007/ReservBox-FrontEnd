@@ -16,7 +16,7 @@ export class ConfigComponent implements OnInit {
   }
   save() {
     this.config.rate = this.newRate;
-    console.log(this.config.rate)
+    //console.log(this.config.rate)
     this.rate = this.config.rate;
 
   }
