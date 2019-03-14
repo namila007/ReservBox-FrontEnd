@@ -3,7 +3,7 @@ import { SearchService } from './../search.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import * as _  from 'lodash';
-import { DataSource } from '@angular/cdk/table';
+
 
 export interface Request {
 
@@ -42,6 +42,7 @@ export class SearchRoomsComponent implements OnInit {
   datatbl = new MatTableDataSource(dataset);
   public datasource;
   reqData: ReqTable[];
+  public rdata=dataset;
   constructor(private _searchService: SearchService) { }
 
   ngOnInit() {
@@ -73,19 +74,23 @@ export class SearchRoomsComponent implements OnInit {
     return end.getDate() - start.getDate();
   }
 
+  resetData() {
+    this.rdata = [];
+    this.datatbl = new MatTableDataSource<ReqTable[]>();
+    console.log(this.rdata)
+  }
+
   addData() {
-    let data = dataset;
+
     let entry: ReqTable = {
       rooms: this.noOfRooms,
       maxAdults: this.adults
     }
 
-    data.push(entry);
+    this.rdata.push(entry);
 
-    this.datatbl = new MatTableDataSource<ReqTable[]>(data);
-    this.reqData = data;
-
-   console.log(data)
+    this.datatbl = new MatTableDataSource<ReqTable[]>(this.rdata);
+    this.reqData = this.rdata;
   }
 
 
@@ -108,7 +113,7 @@ export class SearchRoomsComponent implements OnInit {
       console.log(data)
       console.log(noOfadults,nights)
       const datas = _.map(data ,x =>{
-        return _.assign (x,x, {price: parseInt(x["roomRate"])*(noOfadults)*nights*1.15})
+        return _.assign (x,x, {price: Math.round(parseInt(x["roomRate"])*(noOfadults)*nights*1.15)})
       })
       console.log(datas)
       console.log(this.datasource)
