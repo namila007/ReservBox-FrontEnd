@@ -9,15 +9,15 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  search(adults,start,end):Observable<Object>{
-    let param ={
-      adults: adults,
-      startDate:start,
-      endDate: end
-      }
-      console.log(param);
+  search(payload):Observable<Object>{
+    // let param ={
+    //   adults: adults,
+    //   startDate:start,
+    //   endDate: end
+    //   }
+    //   console.log(param);
     const url = 'http://localhost:8080/api/search';
-     return this.http.get<any>(url, {params: param});
+     return this.http.post<any>(url, payload);
   }
 
 }

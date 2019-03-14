@@ -3,7 +3,6 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ContractService } from '../contract.service';
 
 
-
 export interface Rooms {
   maxAdults: number;
   roomRate: number;
@@ -11,8 +10,8 @@ export interface Rooms {
   roomType: string;
 }
 
-
 export interface Reply {
+  roomRate: any;
   id: number;
   startDate: string;
   endDate: string;
@@ -63,9 +62,7 @@ export class NewContractComponent implements OnInit {
   }
 
   onSubmit() {
-
     const payload = {
-
       startDate: this.startDate,
       endDate: this.endDate,
       hotel: {
@@ -75,11 +72,9 @@ export class NewContractComponent implements OnInit {
     rooms: this.dataSource.data
     };
 // tslint:disable-next-line: arrow-return-shorthand
-
     this._contractService.createContract(payload).subscribe(reply => {
       console.log(reply);
       if (reply.id != null) { alert('Data Added'); }
-
     });
 
 
