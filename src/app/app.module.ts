@@ -10,11 +10,14 @@ import {MaterialModule} from './material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
+import { ConfigComponent } from './config/config.component';
+import { ConfigService } from './config.service';
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    SearchRoomsComponent
+    SearchRoomsComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { SearchRoomsComponent } from './search-rooms/search-rooms.component';
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ConfigService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

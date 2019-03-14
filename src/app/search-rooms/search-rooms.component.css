@@ -14,6 +14,10 @@
 
   margin: 10px;
 }
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
 
 .mat-column-hotelName {
   flex: 0 0 25% !important;

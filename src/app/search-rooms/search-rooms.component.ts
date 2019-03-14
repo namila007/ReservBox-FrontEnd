@@ -1,3 +1,4 @@
+import { ConfigService } from './../config.service';
 import { Reply } from './../new-contract/new-contract.component';
 import { SearchService } from './../search.service';
 import { Component, OnInit } from '@angular/core';
@@ -43,10 +44,11 @@ export class SearchRoomsComponent implements OnInit {
   public datasource;
   reqData: ReqTable[];
   public rdata=dataset;
-  constructor(private _searchService: SearchService) { }
+  constructor(private _searchService: SearchService, private configService:ConfigService) { }
 
   ngOnInit() {
     this.datasource= new MatTableDataSource(dataset);
+
   }
 
   public startDate: Date;
@@ -113,7 +115,7 @@ export class SearchRoomsComponent implements OnInit {
       console.log(data)
       console.log(noOfadults,nights)
       const datas = _.map(data ,x =>{
-        return _.assign (x,x, {price: Math.round(parseInt(x["roomRate"])*(noOfadults)*nights*1.15)})
+        return _.assign (x,x, {price: Math.round(parseInt(x["roomRate"])*(noOfadults)*nights*this.configService.rate)})
       })
       console.log(datas)
       console.log(this.datasource)
