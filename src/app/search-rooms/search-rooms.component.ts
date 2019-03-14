@@ -1,16 +1,34 @@
+import { Reply } from './../new-contract/new-contract.component';
 import { SearchService } from './../search.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import * as _  from 'lodash';
+import { DataSource } from '@angular/cdk/table';
 
 export interface Request {
-    adults: number;
-    startDate: Date;
-    endDate: Date;
 
+    startDate: String;
+    endDate: String;
+    roomRequestList: ReqTable[]
 }
 
+export interface ReqTable {
+    rooms: number,
+    maxAdults: number
+}
+
+export interface Reply {
+  hotelName:String;
+  roomType:String;
+  roomRate:number;
+  price:number;
+}
+
+
+
+
 const dataset:any[] = [];
+
 
 @Component({
   selector: 'app-search-rooms',
@@ -20,25 +38,32 @@ const dataset:any[] = [];
 export class SearchRoomsComponent implements OnInit {
   displayedColumns = ['hotelName', 'roomType', 'price'];
   displayedCols = ['rooms', 'adults'];
-  dataSource = new MatTableDataSource(dataset);
+  //dataSource = new MatTableDataSource([{"hotelName":"wer","roomType":"sdfs","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"sdfs","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"sdfs","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"sdfs","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"YAHOOOOOOOOOOO","roomType":"DANDA","roomRate":3223.0},{"hotelName":"dfsf","roomType":"sdfs","roomRate":3223.0},{"hotelName":"dfsf","roomType":"sdfs","roomRate":324.0},{"hotelName":"dfsf","roomType":"dwd","roomRate":3223.0},{"hotelName":"weq","roomType":"q","roomRate":2.0}]);
+  datatbl = new MatTableDataSource(dataset);
+  public datasource;
+  reqData: ReqTable[];
   constructor(private _searchService: SearchService) { }
 
   ngOnInit() {
+    this.datasource= new MatTableDataSource(dataset);
   }
 
   public startDate: Date;
   public endDate: Date;
-  public adults = '';
+  public adults:number;
+  public searchrequest: Request;
   public data:any[];
+  public noOfRooms: number;
+  public finalData;
   changedate(date: Date) {
     let year = date.getFullYear();
-    let month = date.getMonth()+1;
-    let day = date.getDate();
+    let month = (date.getMonth()+1).toFixed();
+    let day = date.getDate().toFixed();
 
-      if (day < 10) {
+      if (parseInt (day) < 10) {
         day = '0' + day;
       }
-      if (month < 10) {
+      if (parseInt (month) < 10) {
         month = '0' + month;
       }
     return year+'-' + month + '-'+day;
@@ -48,24 +73,49 @@ export class SearchRoomsComponent implements OnInit {
     return end.getDate() - start.getDate();
   }
 
+  addData() {
+    let data = dataset;
+    let entry: ReqTable = {
+      rooms: this.noOfRooms,
+      maxAdults: this.adults
+    }
+
+    data.push(entry);
+
+    this.datatbl = new MatTableDataSource<ReqTable[]>(data);
+    this.reqData = data;
+
+   console.log(data)
+  }
+
+
   find(){
-    let v = this.changedate(this.startDate);
-    console.log(v);
-    this._searchService.search(this.adults,this.changedate(this.startDate),this.changedate(this.endDate))
+    let nights = this.calnight(this.startDate,this.endDate);
+    let noOfadults=0;
+     for (let index = 0; index < this.reqData.length; index++) {
+      noOfadults += this.reqData[index].maxAdults*this.reqData[index].rooms;
+
+    }
+    let payload: Request = {
+      startDate:this.changedate(this.startDate),
+      endDate: this.changedate(this.endDate),
+      roomRequestList : this.reqData
+    }
+
+    this._searchService.search( payload)
     .subscribe (data => {
 
       console.log(data)
-      let nights = this.calnight(this.startDate,this.endDate);
-    const datas = _.map(data, element => {
-       return {
-          hotelName: element[0],
-          roomType: element[1].toString(),
-          price:  parseFloat(element[2])*parseInt(this.adults)*nights*0.1
-       }
+      console.log(noOfadults,nights)
+      const datas = _.map(data ,x =>{
+        return _.assign (x,x, {price: parseInt(x["roomRate"])*(noOfadults)*nights*1.15})
       })
-      console.log(datas);
-      this.dataSource = new MatTableDataSource(datas);
-    })
+      console.log(datas)
+      console.log(this.datasource)
+      this.datasource = new MatTableDataSource(datas)
+      console.log(this.datasource)
+    }
+    )
 
 
 

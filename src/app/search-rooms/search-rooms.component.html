@@ -16,37 +16,48 @@
           </mat-form-field>
     </div>
 </div>
+<mat-divider></mat-divider>
 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
     <div fxLayout="column">
         <mat-form-field class="box">
-            <input [(ngModel)]='adults' matInput placeholder="No of Adults">
+            <input [(ngModel)]='noOfRooms' matInput placeholder="No of Rooms">
           </mat-form-field>
       </div>
+    <div fxLayout="column">
+        <mat-form-field class="box">
+            <input [(ngModel)]='adults' matInput placeholder="No of Adults per Room">
+          </mat-form-field>
+      </div>
+      <div fxLayout="column" class="box">
+          <button mat-raised-button color="accent" class="addbtn" (click)="addData()">Add</button>
+
+        </div>
 </div>
 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z1 tbl" responsive="true">
+  <mat-table [dataSource]="datatbl" class="mat-elevation-z1 tbl" responsive="true">
 
     <ng-container matColumnDef="rooms">
         <th mat-header-cell *matHeaderCellDef> No. of Rooms </th>
-        <td mat-cell *matCellDef="let rooms"> {{rooms.no}} </td>
+        <td mat-cell *matCellDef="let rooms"> {{rooms.rooms}} </td>
       </ng-container>
 
     <ng-container matColumnDef="adults">
         <th mat-header-cell *matHeaderCellDef> Adults per Room </th>
-        <td mat-cell *matCellDef="let rooms"> {{rooms.adults}} </td>
+        <td mat-cell *matCellDef="let rooms"> {{rooms.maxAdults}} </td>
       </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedCols;"></tr>
 </mat-table>
 </div>
+<mat-divider></mat-divider>
 <mat-action-row>
-    <button mat-button color="primary" class="btn" (click)="find()" >SEARCH</button>
+    <button mat-raised-button color="primary" class="btn" (click)="find()" >SEARCH</button>
 
 </mat-action-row>
 </mat-card>
 <mat-card class="card">
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z1 tbl" responsive="true">
+    <mat-table [dataSource]="datasource" class="mat-elevation-z1 tbl">
 
         <ng-container matColumnDef="hotelName">
             <th mat-header-cell *matHeaderCellDef> Hotel Name </th>
@@ -60,10 +71,10 @@
 
         <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let room"> {{room.price}} </td>
+            <td mat-cell *matCellDef="let rooms"> {{rooms.price}} </td>
           </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 </mat-card>

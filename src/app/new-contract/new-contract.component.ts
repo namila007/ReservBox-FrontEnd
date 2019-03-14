@@ -11,6 +11,7 @@ export interface Rooms {
 }
 
 export interface Reply {
+  roomRate: any;
   id: number;
   startDate: string;
   endDate: string;

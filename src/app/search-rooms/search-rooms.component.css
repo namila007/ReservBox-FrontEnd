@@ -11,8 +11,8 @@
 
 .btn {
   width: 100%;
-  background-color: plum;
-  margin: 2px;
+
+  margin: 10px;
 }
 
 .mat-column-hotelName {
@@ -39,3 +39,7 @@
   min-width: 104px !important;
 }
 
+.addbtn{
+  justify-content: center;
+
+}
